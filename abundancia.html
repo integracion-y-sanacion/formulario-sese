@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profundización: Abundancia · Sesé</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --morado: #5B21B6; --morado-suave: #7C3AED; --rosa: #9D174D; --dorado: #B45309; --bg: #0D0A14; --bg3: #1A1628; --texto: #E8E3F0; --texto-suave: #A89DC4; --linea: rgba(124,58,237,0.25); --input-bg: rgba(91,33,182,0.08); --input-border: rgba(124,58,237,0.3); --input-focus: rgba(124,58,237,0.7); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--texto); font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.7; min-height: 100vh; }
+  body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 60% 40% at 20% 10%, rgba(91,33,182,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 35% at 80% 85%, rgba(157,23,77,0.12) 0%, transparent 60%); pointer-events: none; z-index: 0; }
+  .progress-wrap { position: sticky; top: 0; z-index: 100; background: rgba(13,10,20,0.92); backdrop-filter: blur(12px); padding: 11px 20px; border-bottom: 1px solid var(--linea); }
+  .progress-inner { max-width: 720px; margin: 0 auto; }
+  .progress-bar-bg { height: 2px; background: rgba(124,58,237,0.15); border-radius: 2px; overflow: hidden; }
+  .progress-bar { height: 100%; background: linear-gradient(90deg, var(--morado-suave), var(--rosa)); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-text { text-align: center; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--texto-suave); margin-top: 7px; }
+  .wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
+  .hero { text-align: center; padding: 70px 0 50px; border-bottom: 1px solid var(--linea); margin-bottom: 50px; }
+  .sigil { font-size: 26px; letter-spacing: 12px; color: var(--morado-suave); margin-bottom: 24px; opacity: 0.8; }
+  .hero-etapa { display: inline-block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--morado-suave); border: 1px solid rgba(124,58,237,0.35); border-radius: 20px; padding: 5px 16px; margin-bottom: 24px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 7vw, 50px); font-weight: 300; line-height: 1.15; color: #F0EBF8; margin-bottom: 16px; }
+  .hero h1 em { font-style: italic; color: var(--morado-suave); }
+  .hero p { max-width: 500px; margin: 0 auto; color: var(--texto-suave); font-size: 14px; line-height: 1.85; }
+  .intro-card { background: var(--bg3); border: 1px solid var(--linea); border-left: 3px solid var(--morado-suave); border-radius: 12px; padding: 26px 30px; margin-bottom: 50px; font-size: 14px; color: var(--texto-suave); line-height: 1.9; }
+  .intro-card strong { color: var(--texto); font-weight: 500; }
+  .modulo { margin-bottom: 60px; }
+  .modulo-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--linea); }
+  .modulo-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--morado-suave); opacity: 0.35; line-height: 1; flex-shrink: 0; }
+  .modulo-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 25px; font-weight: 400; color: #F0EBF8; margin-bottom: 5px; line-height: 1.2; }
+  .modulo-info p { font-size: 13px; color: var(--texto-suave); line-height: 1.7; }
+  .pregunta { margin-bottom: 30px; }
+  .pregunta label { display: block; font-size: 14.5px; color: var(--texto); margin-bottom: 6px; line-height: 1.5; }
+  .num { color: var(--morado-suave); font-weight: 500; margin-right: 4px; }
+  .ayuda { font-size: 12.5px; color: var(--dorado); margin-bottom: 10px; padding-left: 14px; border-left: 2px solid rgba(180,83,9,0.4); line-height: 1.6; font-style: italic; }
+  input[type="text"], textarea { width: 100%; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 8px; padding: 13px 16px; color: var(--texto); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; transition: border-color 0.2s, background 0.2s; outline: none; resize: vertical; }
+  input[type="text"]::placeholder, textarea::placeholder { color: rgba(168,157,196,0.35); }
+  input[type="text"]:focus, textarea:focus { border-color: var(--input-focus); background: rgba(91,33,182,0.13); }
+  textarea { min-height: 90px; }
+  textarea.grande { min-height: 130px; }
+  .envio-section { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--linea); margin-top: 10px; }
+  .envio-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: #F0EBF8; margin-bottom: 12px; }
+  .envio-section p { font-size: 13.5px; color: var(--texto-suave); margin-bottom: 34px; max-width: 420px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+  .btn-enviar { display: inline-block; background: linear-gradient(135deg, var(--morado), var(--morado-suave)); color: white; border: none; padding: 18px 52px; border-radius: 50px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 30px rgba(91,33,182,0.35); }
+  .btn-enviar:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(91,33,182,0.5); }
+  .nota-privacidad { margin-top: 18px; font-size: 12px; color: rgba(168,157,196,0.4); }
+  footer { text-align: center; padding: 36px 0 20px; font-size: 11.5px; color: rgba(168,157,196,0.3); letter-spacing: 1px; }
+  @media (max-width: 480px) { .wrap { padding: 0 16px 60px; } .hero { padding: 48px 0 34px; } .intro-card { padding: 20px 18px; } .modulo-num { font-size: 36px; } }
+</style>
+</head>
+<body>
+<div class="progress-wrap"><div class="progress-inner"><div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div><div class="progress-text" id="progressText">Comenzá tu recorrido</div></div></div>
+<div class="wrap">
+<div class="hero"><div class="sigil">✦ ✦ ✦</div><div class="hero-etapa">Profundización · Bloqueo de abundancia</div><h1>Tu relación<br><em>con el merecer</em></h1><p>Los bloqueos de abundancia raramente son tuyos. Muchas veces son lealtades, mandatos o historias familiares que tomamos como propias sin darnos cuenta.</p></div>
+<div class="intro-card"><strong>Sesé detectó en tu proceso bloqueos relacionados con la abundancia y la prosperidad.</strong><br><br>Respondé con honestidad, sin juicio. El dinero es energía, y la energía sigue los patrones que aprendimos. Acá los vamos a ver juntas para que puedas elegir otros.<br><br><strong>🔒 Privacidad:</strong> Todo lo que compartás es confidencial. Solo lo verá Sesé.</div>
+<form id="form">
+<div class="modulo"><div class="modulo-header"><div class="modulo-num">✦</div><div class="modulo-info"><h2>Abundancia, dinero y merecer</h2><p>Los patrones económicos que vienen del árbol familiar.</p></div></div>
+<div class="pregunta"><label><span class="num">1.</span> ¿Cuál es tu primer recuerdo relacionado al dinero? ¿Qué sentiste en ese momento?</label><textarea name="f1" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">2.</span> ¿Hubo en tu familia alguna historia de pérdida económica muy grande? ¿Quién la vivió y qué pasó?</label><textarea name="f2" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">3.</span> ¿Hay alguien en tu familia que haya tenido mucho y lo perdió todo? ¿O que nunca pudo salir de la escasez?</label><div class="ayuda">✦ Estas historias dejan marcas energéticas en el sistema que se repiten en generaciones siguientes.</div><textarea name="f3" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">4.</span> ¿Sentís que recibir dinero, cobrar por lo que hacés o pedir lo que mereces te genera incomodidad o culpa?</label><textarea name="f4" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">5.</span> ¿Cuánto creés que merecés ganar? ¿Hay un techo interno que sientas que no podés superar?</label><div class="ayuda">✦ No hablo de número. Hablo de la sensación. ¿De dónde viene ese techo?</div><textarea name="f5" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">6.</span> ¿Qué pasó la última vez que tu economía empezó a mejorar? ¿Llegó un momento en que algo se frenó?</label><textarea name="f6" class="grande" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">7.</span> ¿Qué cambiaría en tu vida si tuvieras abundancia real? ¿Eso te genera alegría, miedo, o las dos cosas?</label><div class="ayuda">✦ A veces le tenemos miedo a la abundancia porque implicaría cambios que nos asustan.</div><textarea name="f7" class="grande" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">8.</span> ¿Tenés la sensación de que si prosperás, algo o alguien se va a enojar o lo vas a perder?</label><textarea name="f8" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">9.</span> ¿Qué relación tenía tu madre con el dinero? ¿Y tu padre?</label><div class="ayuda">✦ ¿Quién lo manejaba? ¿Cómo hablaban de él? ¿Qué emoción generaba en cada uno?</div><textarea name="f9" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">10.</span> Si pudieras darle un mensaje a la versión tuya que todavía cree que no merece la abundancia, ¿qué le dirías?</label><textarea name="f10" class="grande" placeholder="Escribile desde el amor..."></textarea></div>
+</div>
+<div class="envio-section">
+  <h3>La abundancia empieza por creerse merecedora.</h3>
+  <p>Ya diste el primer paso. Sesé integrará estas respuestas a tu proceso de sanación.</p>
+  <button type="button" class="btn-enviar" onclick="enviar()">Enviar mis respuestas ✦</button>
+  <div class="nota-privacidad">🔒 Tus respuestas son confidenciales</div>
+</div>
+</form>
+<footer>✦ Sistema de Sanación Integrado por Sesé ✦<br>Constelaciones · Biodecodificación · Numerología</footer>
+</div>
+<script>
+  function actualizarProgreso() {
+    const campos = document.querySelectorAll('input[type="text"], textarea');
+    let completados = 0;
+    campos.forEach(c => { if (c.value.trim() !== '') completados++; });
+    const pct = campos.length > 0 ? Math.round((completados / campos.length) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    const txt = document.getElementById('progressText');
+    if (pct === 0) txt.textContent = 'Comenzá tu recorrido';
+    else if (pct < 30) txt.textContent = 'Avanzando · ' + pct + '% completado';
+    else if (pct < 70) txt.textContent = 'Muy bien · ' + pct + '% completado';
+    else if (pct < 100) txt.textContent = 'Casi lista · ' + pct + '% completado';
+    else txt.textContent = '✦ Formulario completo';
+  }
+  document.addEventListener('input', actualizarProgreso);
+  function enviar() {
+    const labels = ["1. Tu primer recuerdo relacionado al dinero","2. Historia de pérdida económica en tu familia","3. Alguien que perdió todo o nunca prosperó","4. ¿Cobrar o recibir dinero te genera culpa?","5. ¿Cuánto creés que merecés ganar?","6. Última vez que tu economía mejoró y se cayó","7. ¿Qué cambiaría si tuvieras abundancia?","8. ¿Sentís que si prosperás perderás algo?","9. Relación de tu madre y tu padre con el dinero","10. Mensaje a la parte que no cree que merece"];
+    const campos = document.querySelectorAll('input[type="text"], textarea');
+    let msg = "✦ PROFUNDIZACIÓN: ABUNDANCIA · SESÉ ✦\n\n";
+    campos.forEach((c, i) => { msg += (labels[i] || ('Pregunta ' + (i+1))) + ':\n' + (c.value.trim() || '(sin respuesta)') + '\n\n'; });
+    msg += "─────────────────\n✦ Fin del formulario ✦";
+    window.open('https://wa.me/5492983508744?text=' + encodeURIComponent(msg), '_blank');
+  }
+</script>
+</body></html>
