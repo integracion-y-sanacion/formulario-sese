@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profundización: Vínculos · Sesé</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --morado: #5B21B6; --morado-suave: #7C3AED; --rosa: #9D174D; --dorado: #B45309; --bg: #0D0A14; --bg3: #1A1628; --texto: #E8E3F0; --texto-suave: #A89DC4; --linea: rgba(124,58,237,0.25); --input-bg: rgba(91,33,182,0.08); --input-border: rgba(124,58,237,0.3); --input-focus: rgba(124,58,237,0.7); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--texto); font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.7; min-height: 100vh; }
+  body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 60% 40% at 20% 10%, rgba(91,33,182,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 35% at 80% 85%, rgba(157,23,77,0.12) 0%, transparent 60%); pointer-events: none; z-index: 0; }
+  .progress-wrap { position: sticky; top: 0; z-index: 100; background: rgba(13,10,20,0.92); backdrop-filter: blur(12px); padding: 11px 20px; border-bottom: 1px solid var(--linea); }
+  .progress-inner { max-width: 720px; margin: 0 auto; }
+  .progress-bar-bg { height: 2px; background: rgba(124,58,237,0.15); border-radius: 2px; overflow: hidden; }
+  .progress-bar { height: 100%; background: linear-gradient(90deg, var(--morado-suave), var(--rosa)); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-text { text-align: center; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--texto-suave); margin-top: 7px; }
+  .wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
+  .hero { text-align: center; padding: 70px 0 50px; border-bottom: 1px solid var(--linea); margin-bottom: 50px; }
+  .sigil { font-size: 26px; letter-spacing: 12px; color: var(--morado-suave); margin-bottom: 24px; opacity: 0.8; }
+  .hero-etapa { display: inline-block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--morado-suave); border: 1px solid rgba(124,58,237,0.35); border-radius: 20px; padding: 5px 16px; margin-bottom: 24px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 7vw, 50px); font-weight: 300; line-height: 1.15; color: #F0EBF8; margin-bottom: 16px; }
+  .hero h1 em { font-style: italic; color: var(--morado-suave); }
+  .hero p { max-width: 500px; margin: 0 auto; color: var(--texto-suave); font-size: 14px; line-height: 1.85; }
+  .intro-card { background: var(--bg3); border: 1px solid var(--linea); border-left: 3px solid var(--morado-suave); border-radius: 12px; padding: 26px 30px; margin-bottom: 50px; font-size: 14px; color: var(--texto-suave); line-height: 1.9; }
+  .intro-card strong { color: var(--texto); font-weight: 500; }
+  .modulo { margin-bottom: 60px; }
+  .modulo-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--linea); }
+  .modulo-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--morado-suave); opacity: 0.35; line-height: 1; flex-shrink: 0; }
+  .modulo-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 25px; font-weight: 400; color: #F0EBF8; margin-bottom: 5px; line-height: 1.2; }
+  .modulo-info p { font-size: 13px; color: var(--texto-suave); line-height: 1.7; }
+  .pregunta { margin-bottom: 30px; }
+  .pregunta label { display: block; font-size: 14.5px; color: var(--texto); margin-bottom: 6px; line-height: 1.5; }
+  .num { color: var(--morado-suave); font-weight: 500; margin-right: 4px; }
+  .ayuda { font-size: 12.5px; color: var(--dorado); margin-bottom: 10px; padding-left: 14px; border-left: 2px solid rgba(180,83,9,0.4); line-height: 1.6; font-style: italic; }
+  input[type="text"], textarea { width: 100%; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 8px; padding: 13px 16px; color: var(--texto); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; transition: border-color 0.2s, background 0.2s; outline: none; resize: vertical; }
+  input[type="text"]::placeholder, textarea::placeholder { color: rgba(168,157,196,0.35); }
+  input[type="text"]:focus, textarea:focus { border-color: var(--input-focus); background: rgba(91,33,182,0.13); }
+  textarea { min-height: 90px; }
+  textarea.grande { min-height: 130px; }
+  .envio-section { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--linea); margin-top: 10px; }
+  .envio-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: #F0EBF8; margin-bottom: 12px; }
+  .envio-section p { font-size: 13.5px; color: var(--texto-suave); margin-bottom: 34px; max-width: 420px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+  .btn-enviar { display: inline-block; background: linear-gradient(135deg, var(--morado), var(--morado-suave)); color: white; border: none; padding: 18px 52px; border-radius: 50px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 30px rgba(91,33,182,0.35); }
+  .btn-enviar:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(91,33,182,0.5); }
+  .nota-privacidad { margin-top: 18px; font-size: 12px; color: rgba(168,157,196,0.4); }
+  footer { text-align: center; padding: 36px 0 20px; font-size: 11.5px; color: rgba(168,157,196,0.3); letter-spacing: 1px; }
+  @media (max-width: 480px) { .wrap { padding: 0 16px 60px; } .hero { padding: 48px 0 34px; } .intro-card { padding: 20px 18px; } .modulo-num { font-size: 36px; } }
+</style>
+</head>
+<body>
+<div class="progress-wrap"><div class="progress-inner"><div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div><div class="progress-text" id="progressText">Comenzá tu recorrido</div></div></div>
+<div class="wrap">
+<div class="hero"><div class="sigil">✦ ✦ ✦</div><div class="hero-etapa">Profundización · Vínculos y dependencia emocional</div><h1>Cómo amás<br><em>y cómo te perdés</em></h1><p>Los vínculos que más nos duelen son los que más nos muestran. Acá vamos a mirar qué patrones se repiten y de dónde vienen.</p></div>
+<div class="intro-card"><strong>Sesé detectó en tu proceso patrones relacionales que merecen una mirada más profunda.</strong><br><br>No hay nada de qué avergonzarse en cómo amamos. Todo lo que hacemos en los vínculos lo aprendimos para sobrevivir. Acá lo miramos para poder elegir diferente.<br><br><strong>🔒 Privacidad:</strong> Todo lo que compartás es confidencial. Solo lo verá Sesé.</div>
+<form id="form">
+<div class="modulo"><div class="modulo-header"><div class="modulo-num">✦</div><div class="modulo-info"><h2>Vínculos tóxicos y dependencia emocional</h2><p>Los patrones de apego que se repiten.</p></div></div>
+<div class="pregunta"><label><span class="num">1.</span> ¿Cómo te sentís cuando estás sola? ¿Es un espacio de paz o de angustia?</label><div class="ayuda">✦ La respuesta a esta pregunta dice mucho sobre el tipo de apego que desarrollamos.</div><textarea name="f1" placeholder="Contame honestamente..."></textarea></div>
+<div class="pregunta"><label><span class="num">2.</span> ¿Alguna vez priorizaste tanto a otra persona que te perdiste a vos misma? ¿Quién eras vos en esa relación?</label><textarea name="f2" class="grande" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">3.</span> ¿Sentís que el amor siempre implica sufrimiento, sacrificio o lucha?</label><div class="ayuda">✦ ¿De dónde viene esa creencia? ¿La viste en alguien de tu familia?</div><textarea name="f3" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">4.</span> ¿Qué hacés cuando alguien a quien amás te trata mal? ¿Cuál es tu primera reacción?</label><textarea name="f4" placeholder="¿Te alejás, te quedás, lo justificás, te enojás, pedís perdón vos?"></textarea></div>
+<div class="pregunta"><label><span class="num">5.</span> ¿Hay alguien de quien te cueste alejarte aunque sepas que te hace daño? ¿Qué te mantiene ahí?</label><textarea name="f5" class="grande" placeholder="Contame con honestidad..."></textarea></div>
+<div class="pregunta"><label><span class="num">6.</span> ¿Identificás el patrón que se repite? (el abandonador, el que necesita ser rescatado, el controlador, el ausente emocional...)</label><div class="ayuda">✦ No para juzgar. Para ver qué dinámica conocida buscás sin darte cuenta.</div><textarea name="f6" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">7.</span> ¿Viste ese mismo patrón en la relación de tus padres o en tu familia?</label><textarea name="f7" placeholder="Contame qué observaste..."></textarea></div>
+<div class="pregunta"><label><span class="num">8.</span> ¿Cuándo fue la última vez que pusiste un límite en un vínculo? ¿Cómo te sentiste después?</label><textarea name="f8" placeholder="Contame..."></textarea></div>
+<div class="pregunta"><label><span class="num">9.</span> ¿Qué creés que merece recibir en un vínculo la versión más sanada de vos?</label><textarea name="f9" class="grande" placeholder="Describilo con detalle..."></textarea></div>
+<div class="pregunta"><label><span class="num">10.</span> ¿Qué tipo de vínculo con vos misma querés construir primero, antes de cualquier otro?</label><div class="ayuda">✦ Porque todo vínculo externo refleja el interno.</div><textarea name="f10" class="grande" placeholder="Contame qué imaginás..."></textarea></div>
+</div>
+<div class="envio-section">
+  <h3>El vínculo más importante es el que tenés con vos.</h3>
+  <p>Todo lo que compartiste acá alimenta tu proceso de sanación vincular. Sesé lo integrará con cuidado.</p>
+  <button type="button" class="btn-enviar" onclick="enviar()">Enviar mis respuestas ✦</button>
+  <div class="nota-privacidad">🔒 Tus respuestas son confidenciales</div>
+</div>
+</form>
+<footer>✦ Sistema de Sanación Integrado por Sesé ✦<br>Constelaciones · Biodecodificación · Numerología</footer>
+</div>
+<script>
+  function actualizarProgreso() {
+    const campos = document.querySelectorAll('input[type="text"], textarea');
+    let completados = 0;
+    campos.forEach(c => { if (c.value.trim() !== '') completados++; });
+    const pct = campos.length > 0 ? Math.round((completados / campos.length) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    const txt = document.getElementById('progressText');
+    if (pct === 0) txt.textContent = 'Comenzá tu recorrido';
+    else if (pct < 30) txt.textContent = 'Avanzando · ' + pct + '% completado';
+    else if (pct < 70) txt.textContent = 'Muy bien · ' + pct + '% completado';
+    else if (pct < 100) txt.textContent = 'Casi lista · ' + pct + '% completado';
+    else txt.textContent = '✦ Formulario completo';
+  }
+  document.addEventListener('input', actualizarProgreso);
+  function enviar() {
+    const labels = ["1. ¿Cómo te sentís cuando estás sola?","2. ¿Alguna vez te perdiste por priorizar a otra persona?","3. ¿El amor implica sufrimiento para vos?","4. ¿Qué hacés cuando te tratan mal?","5. Alguien de quien te cuesta alejarte","6. El patrón que se repite en tus relaciones","7. ¿Viste ese patrón en tu familia?","8. La última vez que pusiste un límite","9. Lo que merecés en un vínculo sano","10. ¿Qué vínculo con vos misma querés construir?"];
+    const campos = document.querySelectorAll('input[type="text"], textarea');
+    let msg = "✦ PROFUNDIZACIÓN: VÍNCULOS · SESÉ ✦\n\n";
+    campos.forEach((c, i) => { msg += (labels[i] || ('Pregunta ' + (i+1))) + ':\n' + (c.value.trim() || '(sin respuesta)') + '\n\n'; });
+    msg += "─────────────────\n✦ Fin del formulario ✦";
+    window.open('https://wa.me/5492983508744?text=' + encodeURIComponent(msg), '_blank');
+  }
+</script>
+</body></html>
