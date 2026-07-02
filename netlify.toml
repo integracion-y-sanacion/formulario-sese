@@ -1,0 +1,34 @@
+[[redirects]]
+  from = "/"
+  to = "/inicio.html"
+  status = 200
+
+[[redirects]]
+  from = "/inicio"
+  to = "/inicio.html"
+  status = 200
+
+[[redirects]]
+  from = "/duelo"
+  to = "/duelo.html"
+  status = 200
+
+[[redirects]]
+  from = "/lealtades"
+  to = "/lealtades.html"
+  status = 200
+
+[[redirects]]
+  from = "/trauma"
+  to = "/trauma.html"
+  status = 200
+
+[[redirects]]
+  from = "/abundancia"
+  to = "/abundancia.html"
+  status = 200
+
+[[redirects]]
+  from = "/vinculos"
+  to = "/vinculos.html"
+  status = 200
